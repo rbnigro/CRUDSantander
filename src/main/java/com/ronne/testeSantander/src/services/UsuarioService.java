@@ -45,4 +45,12 @@ public class UsuarioService {
 
         return usuariosRepository.saveAll(usuarios);
     }
+
+    public boolean deletarPorId(Long id) {
+        if (usuariosRepository.existsById(id)) {
+            usuariosRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }
