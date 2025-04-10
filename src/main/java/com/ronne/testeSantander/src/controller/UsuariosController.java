@@ -23,31 +23,36 @@ public class UsuariosController {
         this.service = service;
     }
 
+    @GetMapping({"", "/"})
+    public ResponseEntity<List<Usuarios>> listarBasestatus() {
+        return ResponseEntity.ok(service.listarTodos());
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Usuarios>> listarUsuarios() {
         return ResponseEntity.ok(service.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/consulta/{id}")
     public ResponseEntity<Usuarios> buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/lote")
+    @PostMapping("/incluir/lote")
     public ResponseEntity<List<Usuarios>> salvarEmLote(@RequestBody @Valid List<UsuarioDTO> usuarios) {
         List<Usuarios> salvos = service.salvarEmLote(usuarios);
         return ResponseEntity.ok(salvos);
     }
 
-    @PostMapping
+    @PostMapping("/incluir")
     public ResponseEntity<Usuarios> adicionarUsuario(@RequestBody UsuarioDTO usuariosDTO) {
         Usuarios usuarioSalvo = service.salvar(usuariosDTO);
         return ResponseEntity.ok(usuarioSalvo);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, String>> deletarUsuario(@PathVariable Long id) {
         boolean deletado = service.deletarPorId(id);
 

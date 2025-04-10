@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class UsuarioDTO {
+
+    @NotBlank(message = "O nome é obrigatório.")
     private String nome;
 
     @NotBlank(message = "Email é obrigatório")
@@ -24,5 +26,13 @@ public class UsuarioDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" +
+                "nome='" + getNome() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                '}';
     }
 }
