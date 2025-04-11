@@ -23,6 +23,13 @@ public class UsuariosController {
         this.service = service;
     }
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<Usuarios> atualizarUsuario(@PathVariable Long id, @RequestBody @Valid UsuarioDTO usuarioDTO) {
+        return service.atualizar(id, usuarioDTO)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping({"", "/"})
     public ResponseEntity<List<Usuarios>> listarBasestatus() {
         return ResponseEntity.ok(service.listarTodos());

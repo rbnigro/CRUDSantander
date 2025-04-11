@@ -46,6 +46,14 @@ public class UsuarioService {
         return usuariosRepository.saveAll(usuarios);
     }
 
+    public Optional<Usuarios> atualizar(Long id, UsuarioDTO dto) {
+        return usuariosRepository.findById(id).map(usuarioExistente -> {
+            usuarioExistente.setNome(dto.getNome());
+            usuarioExistente.setEmail(dto.getEmail());
+            return usuariosRepository.save(usuarioExistente);
+        });
+    }
+
     public boolean deletarPorId(Long id) {
         if (usuariosRepository.existsById(id)) {
             usuariosRepository.deleteById(id);
