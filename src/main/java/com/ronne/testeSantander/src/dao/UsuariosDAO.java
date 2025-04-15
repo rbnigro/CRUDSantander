@@ -37,7 +37,6 @@ public class UsuariosDAO {
         return usuarios;
     }
 
-    // Exemplo de método para salvar um usuário no banco
     public void salvarUsuario(Usuarios usuario) {
         String sql = "INSERT INTO usuario (nome, email) VALUES (?, ?)";
 
