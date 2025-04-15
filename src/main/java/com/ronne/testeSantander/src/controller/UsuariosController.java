@@ -53,7 +53,7 @@ public class UsuariosController {
         return ResponseEntity.ok(salvos);
     }
 
-    @PostMapping("/incluir")
+    @PostMapping("/incluir/")
     public ResponseEntity<Usuarios> adicionarUsuario(@RequestBody UsuarioDTO usuariosDTO) {
         Usuarios usuarioSalvo = service.salvar(usuariosDTO);
         return ResponseEntity.ok(usuarioSalvo);
